@@ -1,13 +1,11 @@
 import express from "express";
+import { getAllSessions, getSession, createSession, updateSession } from "../controller/sessionController.js";
 
 const router = express.Router();
 
-router.get("/session", (req, res)=>{
-    res.status(200).send("Here is the session info")
-});
-
-router.post("/session", (req, res)=>{
-    res.status(200).send("Session created")
-});
+router.get("/",getAllSessions);
+router.get("/:id",getSession);
+router.post("/",createSession);
+router.put("/:id",updateSession);
 
 export default router
