@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/",getAllSessions);
 router.get("/:id",getSession);
-router.post("/",createSession);
+router.post("/create",createSession);
 router.put("/:id",updateSession);
 
 export default router

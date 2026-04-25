@@ -4,7 +4,7 @@ import { getChallenges, createChallenge, deleteChallenge, updateChallenge, getRa
 const router = express.Router();
 
 router.get("/", getChallenges)
-router.post("/", createChallenge)
+router.post("/create", createChallenge)
 router.put("/:id", updateChallenge)
 router.delete("/:id", deleteChallenge)
 router.get("/random", getRandomChallenge)
