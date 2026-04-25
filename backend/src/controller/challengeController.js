@@ -13,8 +13,8 @@ export async function getChallenges(req,res) {
 
 export async function createChallenge(req,res) {
     try {
-        const{title, category, budget} = req.body
-        const newChallenge = new challenge({title:title, category:category, budget:budget})
+        const{title,description, category, budget} = req.body
+        const newChallenge = new challenge({title, category, budget, description})
         const savedChallenge = await newChallenge.save()
         res.status(201).json(savedChallenge)
     } catch (error) {
@@ -26,10 +26,10 @@ export async function createChallenge(req,res) {
 
 export async function updateChallenge(req,res) {
     try {
-        const {title, category, budget} = req.body
+        const {title, description, category, budget} = req.body
         const updatedChallenge = await challenge.findByIdAndUpdate(
             req.params.id, 
-            {title, category, budget}, 
+            {title,description, category, budget}, 
             {new: true}
         );
 

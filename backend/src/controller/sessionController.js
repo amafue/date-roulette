@@ -36,13 +36,15 @@ export async function createSession(req,res) {
 export async function updateSession(req,res) {
     try {
         const {challengeName, date, rating, notes} = req.body
-        const updatedSession = session.findByIdAndUpdate(
+        const updatedSession = await session.findByIdAndUpdate(
             req.params.id, 
             {challengeName, date, rating, notes},
             {new: true}
         );
+
         if (!updatedSession) return res.status(404).json({message:"Session not found"});
         res.status(200).json(updatedSession)
+        
     } catch (error) {
         console.error("Error at updateSession")
         res.status(500).json({message: "Internal server error"})
