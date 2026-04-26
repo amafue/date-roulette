@@ -1,5 +1,5 @@
 # Date Rouletee
-A dating ideas randomizer set up as challenges to have fun together with your partner.
+A dating idea randomizer that generates challenges for couples to spend quality time together.
 
 ## Key Features
 
