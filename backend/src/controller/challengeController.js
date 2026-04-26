@@ -57,13 +57,22 @@ export async function deleteChallenge(req,res) {
 
 export async function getRandomChallenge(req,res) {
     try {
-        const challenges = await challenge.find();
-        if (challenges.length === 0) return res.status(404).json({message:"Challenges not found"});
+        const{category, budget} = req.query;
+        const match = {};
 
-        const randomIndex = Math.floor(Math.random()*challenges.length);
-        const randomChallenge = challenges[randomIndex];
+        if (category) match.category = category;
+        if (budget) match.budget = budget;
+        
+        const randomChallenge = await challenge.aggregate([
+            {$match: match},
+            {$sample: { size: 1 }}
+        ]);
 
-        res.status(200).json(randomChallenge)
+        if (!randomChallenge.length) {
+            return res.status(404).json({message: "No challenge was found"})
+        }
+
+        res.status(200).json(randomChallenge[0])
 
     } catch (error) {
         console.error("Error at getRandomChallenge")

@@ -1,3 +1,21 @@
-h2{
-    color: white;
+body{
+    color: #FDECEF;
+}
+
+.result-card {
+    margin-top: 20px;
+    padding: 20px;
+    border: 5px;
+    border-style: solid;
+    border-color: #FDECEF;
+    border-radius: 10px;
+    display:inline-block ;
+}
+
+.btn{
+    background-color: #FDECEF;
+}
+
+.filter{
+    background-color: #FDECEF;
 }
