@@ -26,21 +26,21 @@ const ChallengeRoulette = () => {
     <div>
         {/* FILTERS */}
         <div>
-        <select onChange={(e) => setCategory(e.target.value)} className='filter'>
-            <option value="">All categories</option>
-            <option value="romantic">romantic</option>
-            <option value="fun">fun</option>
-            <option value="chill">chill</option>
-            <option value="competetive">competetive</option>
+          <select onChange={(e) => setCategory(e.target.value)} className='filter'>
+              <option value="">All categories</option>
+              <option value="romantic">romantic</option>
+              <option value="fun">fun</option>
+              <option value="chill">chill</option>
+              <option value="competetive">competetive</option>
 
-        </select>
+          </select>
 
-        <select onChange={(e) => setBudget(e.target.value)} className='filter'>
-            <option value="">All budgets</option>
-            <option value="low">low</option>
-            <option value="medium">medium</option>
-            <option value="high">high</option>
-        </select>
+          <select onChange={(e) => setBudget(e.target.value)} className='filter'>
+              <option value="">All budgets</option>
+              <option value="low">low</option>
+              <option value="medium">medium</option>
+              <option value="high">high</option>
+          </select>
         </div>
 
         {/* BUTTON */}
