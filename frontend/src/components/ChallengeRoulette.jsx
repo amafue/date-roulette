@@ -1,6 +1,5 @@
 import React , { useState }from 'react'
 
-
 const ChallengeRoulette = () => {
     const [challenge, setChallenge] = useState(null);
     const [category, setCategory] = useState("");
@@ -50,7 +49,7 @@ const ChallengeRoulette = () => {
 
         {/* RESULT CARD */}
         {challenge && (
-        <div className='result-card' >
+        <div className='card' >
             <h2>{challenge.title}</h2>
             <p>{challenge.description}</p>
             <small>{challenge.category} • {challenge.budget}</small>
