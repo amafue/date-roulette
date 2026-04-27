@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import challengeRoutes from "./routes/challengeRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
+import partnerRoutes from "./routes/partnerRoutes.js";
 import sessionRoutes from "./routes/sessionRoutes.js";
 
 
@@ -14,7 +14,7 @@ app.use(express.json()) //to recieve info in json format
 
 //routes
 app.use("/challenges", challengeRoutes);
-app.use("/users", userRoutes);
+app.use("/partners", partnerRoutes);
 app.use("/sessions", sessionRoutes);
 
 export default app;  //can use in other files

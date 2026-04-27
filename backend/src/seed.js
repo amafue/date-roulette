@@ -1,18 +1,20 @@
 import './models/database.js'
 import challenge from "./models/challenge.js";
 import session from "./models/session.js";
-import user from "./models/user.js";
+import partner from './models/partner.js';
 
 //deleting old data
 await challenge.deleteMany()
 await session.deleteMany()
-await user.deleteMany()
+await partner.deleteMany()
 
 console.log("Old data was cleared")
 
-const aUser = await user.create({
-  name: "Lola"
-});
+const partners = await partner.insertMany([
+  { name: "Lola" },
+  { name: "Milo" }
+]);
+
 
 const challenges = await challenge.insertMany([
   {
@@ -50,17 +52,17 @@ const challenges = await challenge.insertMany([
 await session.insertMany([
   {
     challengeId: challenges[0]._id,
-    userId: aUser._id,
+    partnerId: partners[0]._id,
     date: new Date(),
     rating: 8,
-    notes: "I loved it, might recommend to some friends, it helped me reconect with my partner"
+    notes: "Loved it, very fun!"
   },
   {
     challengeId: challenges[1]._id,
-    userId: aUser._id,
+    partnerId: partners[1]._id,
     date: new Date(),
     rating: 7,
-    notes: "chill vibesI enjoyed it but maybe not do it again"
+    notes: "Chill vibe, enjoyed it"
   }
 ]);
 

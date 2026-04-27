@@ -1,10 +1,11 @@
 import session from "../models/session.js"
+import partner from "../models/partner.js";
 
 export async function getAllSessions(req,res) {
     try {
         const sessions = await session.find()
             .populate("challengeId")
-            .populate("userId");
+            .populate("partnerId");
             
         res.status(200).json(sessions)
     } catch (error) {
@@ -17,7 +18,7 @@ export async function getSession(req,res) {
     try {
         const aSession = await session.findById(req.params.id)
             .populate("challengeId")
-            .populate("userId");
+            .populate("partnerId");
 
         if (!aSession) return res.status(404).json({message:"Session not found"});
         res.status(200).json(aSession)
@@ -29,8 +30,21 @@ export async function getSession(req,res) {
 
 export async function createSession(req,res) {
     try {
-        const {challengeId, userId, date, rating, notes} = req.body
-        const newSession = new session({challengeId, userId, date, rating, notes})
+        const {challengeId, partnerName ,date, rating, notes} = req.body
+
+        let foundPartner = await partner.findOne({ name: partnerName });
+
+        if (!foundPartner) {
+            foundPartner = await partner.create({ name: partnerName });
+        }
+
+        const newSession = new session({
+            challengeId,
+            partnerId: foundPartner._id,
+            date,
+            rating,
+            notes
+        });
 
         const savedSession = await newSession.save()
         res.status(201).json(savedSession)
@@ -42,10 +56,10 @@ export async function createSession(req,res) {
 
 export async function updateSession(req,res) {
     try {
-        const {challengeId, userId, date, rating, notes} = req.body
+        const {challengeId, partnerId, date, rating, notes} = req.body
         const updatedSession = await session.findByIdAndUpdate(
             req.params.id, 
-            {challengeId, userId, date, rating, notes},
+            {challengeId, partnerId, date, rating, notes},
             {new: true}
         );
 
