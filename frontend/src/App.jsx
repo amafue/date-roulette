@@ -5,6 +5,7 @@ import SessionDetail from './pages/SessionDetail'
 import HistorySession from './pages/HistorySession'
 import CreateSession from './pages/CreateSession'
 import CreateChallenge from './pages/CreateChallenge'
+import ChallengeList from './pages/ChallengeList'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/sessions" element={<HistorySession/>}/>
         <Route path="/sessions/create" element={<CreateSession/>}/>
         <Route path="/challenges/create" element={<CreateChallenge/>}/>
+        <Route path="/challenges" element={<ChallengeList/>}/>
       </Routes>
     </div>
   )

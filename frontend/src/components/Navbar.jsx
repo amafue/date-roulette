@@ -22,6 +22,11 @@ const Navbar = () => {
                   <PlusIcon size={12}/>
                   <span> Add Challenge</span>
                 </Link>
+
+                <Link to={"/challenges"} className='link-btn' >
+                  <span>Challenge List</span>
+                </Link>
+
             </div>
         </nav>
 
