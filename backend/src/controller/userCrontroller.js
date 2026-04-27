@@ -14,9 +14,9 @@ export async function getUser(req,res) {
 export async function createUser(req,res) {
     try {
         const {name} = req.body;
-        const newUser = new user({name: name})
+        const newUser = new user({name})
         const savedUser = await newUser.save();
-        res.status(200).json(savedUser)
+        res.status(201).json(savedUser)
     } catch (error) {
         console.error("Error at createUser")
         res.status(500).json({message: "Internal server error"})
