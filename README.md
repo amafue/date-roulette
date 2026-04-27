@@ -1,5 +1,5 @@
 # Date Rouletee
-A dating idea randomizer that generates challenges for couples to spend quality time together.
+A dating ideas randomizer that generates challenges for couples to spend quality time together.
 
 ## Key Features
 
@@ -24,11 +24,30 @@ cd date-roulette
 #Set up Backend
 cd backend
 npm install
+npm run dev
 
-#Set up Frontend
+#Set up Frontend, here you need to open a new terminal besides
 cd frontend
 npm install
 npm run dev
 ```
+To seed the database:
+```bash
+cd backend
+npm run seed
+```
+
 ## API Endpoints
-...
+
+### Challenges
+GET /challenges → Get all challenges
+POST /challenges/create → Create a challenge
+GET /challenges/random → Get random challenge
+PUT /challenges/:id → Update a challenge
+DELETE /challenges/:id → Delete a challenge
+
+### Sessions
+POST /sessions/create → Create session
+GET /sessions/:id → Get session details
+GET /sessions → Get History sessions
+
