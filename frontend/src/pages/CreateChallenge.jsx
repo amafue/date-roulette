@@ -83,7 +83,7 @@ const CreateChallenge = () => {
                     <option value="romantic">romantic</option>
                     <option value="fun">fun</option>
                     <option value="chill">chill</option>
-                    <option value="competetive">competetive</option>
+                    <option value="competitive">competetive</option>
                   </select>
                 </div>
 

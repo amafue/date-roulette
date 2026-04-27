@@ -5,10 +5,10 @@ const SessionCard = ({sess}) => {
   return (
     <Link to={`/sessions/${sess._id}`} className='card'>
         <div>
-            <h3 className='card-title'>{sess.challengeName}</h3>
+            <h3 className='card-title'>{sess.challengeId?.title || "No title"}</h3>
             <p>{sess.notes}</p>
             <p>{sess.rating}</p>
-            <p>{sess.date}</p>
+            <p>{new Date(sess.date).toLocaleDateString()}</p>
             <div className='card-actions'>
 
             </div>

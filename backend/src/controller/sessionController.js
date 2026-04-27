@@ -2,7 +2,10 @@ import session from "../models/session.js"
 
 export async function getAllSessions(req,res) {
     try {
-        const sessions = await session.find();
+        const sessions = await session.find()
+            .populate("challengeId")
+            .populate("userId");
+            
         res.status(200).json(sessions)
     } catch (error) {
         console.error("Error at getAllSessions")
@@ -12,7 +15,10 @@ export async function getAllSessions(req,res) {
 
 export async function getSession(req,res) {
     try {
-        const aSession = await session.findById(req.params.id);
+        const aSession = await session.findById(req.params.id)
+            .populate("challengeId")
+            .populate("userId");
+
         if (!aSession) return res.status(404).json({message:"Session not found"});
         res.status(200).json(aSession)
     } catch (error) {
@@ -23,10 +29,11 @@ export async function getSession(req,res) {
 
 export async function createSession(req,res) {
     try {
-        const {challengeName, date, rating, notes} = req.body
-        const newSession = new session({challengeName, date, rating, notes})
+        const {challengeId, userId, date, rating, notes} = req.body
+        const newSession = new session({challengeId, userId, date, rating, notes})
+
         const savedSession = await newSession.save()
-        res.status(200).json(savedSession)
+        res.status(201).json(savedSession)
     } catch (error) {
         console.error("Error at createSession")
         res.status(500).json({message: "Internal server error"})
@@ -35,10 +42,10 @@ export async function createSession(req,res) {
 
 export async function updateSession(req,res) {
     try {
-        const {challengeName, date, rating, notes} = req.body
+        const {challengeId, userId, date, rating, notes} = req.body
         const updatedSession = await session.findByIdAndUpdate(
             req.params.id, 
-            {challengeName, date, rating, notes},
+            {challengeId, userId, date, rating, notes},
             {new: true}
         );
 
