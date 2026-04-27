@@ -44,6 +44,7 @@ const CreateChallenge = () => {
             <ArrowLeftIcon  size={12}/>
             Back to Home
           </Link>
+        </div>
 
           <div className='card'>
             <div className='card-body'>
@@ -111,7 +112,6 @@ const CreateChallenge = () => {
             </div>
 
           </div>
-        </div>
       </div>
     </div>
   )

@@ -1,14 +1,28 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
 
 const CreateSession = () => {
-  const [challengeName, setChallengeName] = useState('');
+  const [challenges, setChallenges] = useState([]);
+  const [challengeId, setChallengeId] = useState("");
   const [date, setDate] = useState('');
   const [rating, setRating] = useState(0);
   const [notes, setNotes] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(()=>{
+    const fetchChallenges =async () =>{
+      try {
+        const res = await fetch("http://localhost:5001/challenges")
+        const data = await res.json()
+        setChallenges(data)
+      } catch (error) {
+        console.error("Error fetching challenges", error);
+      }
+    }
+    fetchChallenges()
+  }, [])
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -20,21 +34,24 @@ const CreateSession = () => {
           "content-type": "application/json"
         },
         body: JSON.stringify({
-          challengeName,
+          challengeId,
+          userId: "69ef2c91ef698d0d7d43fcce",
           date,
           rating,
           notes
         })
       });
       const data =await res.json();
-      console.log("Created", data)
-      setChallengeName("");
+      console.log("Created session", data)
+      setChallengeId("");
       setDate("");
       setRating(0);
       setNotes("");
 
     } catch (error) {
       console.error("Error creating challenge", error)
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -45,6 +62,7 @@ const CreateSession = () => {
             <ArrowLeftIcon  size={12}/>
             Back to Home
           </Link>
+        </div>
 
           <div className='card'>
             <div className='card-body'>
@@ -53,14 +71,22 @@ const CreateSession = () => {
 
                 <div className='form-control'>
                   <label className="label">
-                    <span className='label-text'>Name of the Challenge</span>
+                    <span className='label-text'>Choose a Challenge</span>
                   </label>
-                  <input type="text" 
-                    placeholder='Challenge Title'
-                    className='input'
-                    value={challengeName}
-                    onChange={(e)=>setChallengeName(e.target.value)}
-                  />
+                  <select
+                    className="input"
+                    value={challengeId}
+                    onChange={(e) => setChallengeId(e.target.value)}
+                    required
+                  >
+                    <option value="">Select one of the challenges</option>
+
+                    {challenges.map((c) => (
+                      <option key={c._id} value={c._id}>
+                        {c.title}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className='form-control'>
@@ -116,7 +142,6 @@ const CreateSession = () => {
             </div>
 
           </div>
-        </div>
       </div>
     </div>
   )

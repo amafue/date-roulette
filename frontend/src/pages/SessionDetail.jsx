@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router'
 import { ArrowLeftIcon } from "lucide-react";
 
 const SessionDetail = () => {
-  const [session, setSession] = useState([])
+  const [session, setSession] = useState([null])
   const [loading, setLoading] = useState(false)
   const {id} = useParams();
   const getSessionDetail = async () => {
@@ -24,7 +24,7 @@ const SessionDetail = () => {
 
   useEffect(()=>{
     getSessionDetail();
-  })
+  }, [id])
 
   return (
     <div>
@@ -38,13 +38,13 @@ const SessionDetail = () => {
           <div className='card'>
           {session && (
             <div >
-                <h2>{session.challengeName}</h2>
+                <h2>{session.challengeId?.title}</h2>
                 <p>{session.notes}</p>
-                <small>{session.rating} • {session.date}</small>
+                <small>{session.rating} • {new Date(session.date).toLocaleDateString()}</small>
             </div>
           )}
           </div>
-          
+
     </div>
   )
 }
