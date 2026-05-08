@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
 import DeleteChallenge from "../components/DeleteChallenge";
+import CustomizeChallenge from '../components/CustomizeChallenge';
 
 const ChallengeList = () => {
   const [challenges, setChallenges] = useState([]);
@@ -41,6 +42,7 @@ const ChallengeList = () => {
             <small>{chllng.category} • {chllng.budget}</small>
 
             <DeleteChallenge id={chllng._id} />
+            <CustomizeChallenge challenge={chllng} />
           </div>
         ))}
       </div>
