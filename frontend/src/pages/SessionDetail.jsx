@@ -27,24 +27,43 @@ const SessionDetail = () => {
   }, [id])
 
   return (
-    <div>
-      <div className='container'>
-          <Link to={"/sessions"} className='link-btn'>
-            <ArrowLeftIcon  size={12}/>
+    <div className="min-h-screen bg-[#EEEEEE] p-8 flex flex-col items-center">
+      <div className="w-full max-w-md">
+        
+        {/* BACK LINK */}
+        <div className="mb-4">
+          <Link 
+            to="/sessions" 
+            className="flex items-center gap-2 text-[#213C51] font-medium underline decoration-[#6594B1]"
+          >
+            <ArrowLeftIcon size={16}/>
             Back to History
           </Link>
         </div>
 
-          <div className='card'>
-          {session && (
-            <div >
-                <h2>{session.challengeId?.title}</h2>
-                <p>{session.notes}</p>
-                <small>{session.rating} • {new Date(session.date).toLocaleDateString()}</small>
-            </div>
-          )}
-          </div>
+        {/* CONTENT CARD */}
+        <div className="bg-white border border-[#6594B1] rounded-lg p-6 shadow-sm">
+          {session ? (
+            <div>
+              <h2 className="text-xl font-bold text-[#213C51] mb-2 border-b border-[#EEEEEE] pb-2">
+                {session.challengeId?.title}
+              </h2>
+              
+              <p className="text-[#213C51] mb-4 text-sm leading-relaxed">
+                {session.notes}
+              </p>
 
+              <div className="flex justify-between items-center text-xs text-gray-500 font-mono">
+                <span>Rating: {session.rating}/10</span>
+                <span>{new Date(session.date).toLocaleDateString()}</span>
+              </div>
+            </div>
+          ) : (
+            <p className="text-[#213C51]">Loading session...</p>
+          )}
+        </div>
+
+      </div>
     </div>
   )
 }
