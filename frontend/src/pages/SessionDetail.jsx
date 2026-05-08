@@ -37,7 +37,7 @@ const SessionDetail = () => {
             className="flex items-center gap-2 text-[#213C51] font-medium underline decoration-[#6594B1]"
           >
             <ArrowLeftIcon size={16}/>
-            Back to History
+            Back
           </Link>
         </div>
 
