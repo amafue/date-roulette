@@ -17,7 +17,10 @@ const DeleteChallenge = ({ id }) => {
   };
 
   return (
-    <button onClick={deleteChallenge} className="btn">
+    <button 
+      onClick={deleteChallenge} 
+      className="text-[#213C51] bg-[#EEEEEE] px-3 py-1 rounded text-xs font-semibold border border-transparent hover:bg-red-200 transition-colors"
+    >
       Delete
     </button>
   );

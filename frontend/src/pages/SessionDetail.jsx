@@ -27,7 +27,7 @@ const SessionDetail = () => {
   }, [id])
 
   return (
-    <div className="min-h-screen bg-[#EEEEEE] p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-[#DDAED3] p-8 flex flex-col items-center">
       <div className="w-full max-w-md">
         
         {/* BACK LINK */}

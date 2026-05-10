@@ -32,8 +32,11 @@ const CustomizeChallenge = ({challenge}) => {
     }
   return (
     <div>
-        <button onClick={customizeChallenge} className="btn">
-        Edit
+        <button 
+        onClick={customizeChallenge} 
+        className="text-[#6594B1] bg-white px-3 py-1 rounded text-xs font-semibold border border-[#6594B1] hover:bg-[#6594B1] hover:text-white transition-colors"
+        >
+            Edit
         </button>
     </div>
   )
