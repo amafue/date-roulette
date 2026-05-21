@@ -1,4 +1,4 @@
-# Date Rouletee
+# Date Roulette
 A dating ideas randomizer that generates challenges for couples to spend quality time together.
 
 ## Key Features
